@@ -1,4 +1,52 @@
 
+// work flow 4 ============================================================
+const WordDeatails = async (id) => {
+    const url = `https://openapi.programming-hero.com/api/word/${id}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    displayWordDetails(data.data);
+}
+
+
+// id: 5;
+// level: 1;
+// meaning: "আগ্রহী";
+// partsOfSpeech: "adjective";
+// points: 1;
+// pronunciation: "ইগার";
+// sentence: "The kids were eager to open their gifts.";
+// synonyms: (3)[("enthusiastic", "excited", "keen")];
+// word: "Eager";
+
+
+const displayWordDetails = (data) => {
+    const wordDetailsContainer = document.getElementById('wordDetailsContainer');
+    console.log(data);
+    wordDetailsContainer.innerHTML = `
+         <div class="space-y-1">
+            <h3 class="text-lg font-bold">${data.word} (<i class="fa-etch fa-solid fa-microphone"></i> :${data.pronunciation})</h3>
+        </div>
+        <div class="space-y-1">
+            <p class="  font-bold">Meaning</p>
+            <p class="">${data.meaning ? data.meaning: "meaning not found"}</p>
+        </div>
+        <div class="space-y-1">
+            <p class=" font-bold">Example</p>
+            <p class="">${data.sentence ? data.sentence: "example not found"}</p>
+        </div>
+        <div class="space-y-1">
+            <p class="  font-bold">synonym</p>
+            <p class=""> <span class="btn primary">${data.synonyms[0] ? data.synonyms[0] : "synonym not found"}</span> <span class="btn primary">${data.synonyms[1] ? data.synonyms[1] : "synonym not found"}</span> <span
+                    class="btn primary">${data.synonyms[2] ? data.synonyms[2] : "synonym not found"}</span></p>
+        </div>
+    
+    `;
+    my_modal_5.showModal();
+}
+
+
+
+
 // work flow 3 ============================================================
 
 const removeActive = () => {
@@ -30,15 +78,15 @@ const words = (data) => {
         cardContainer.appendChild(div);
     }
     data.forEach(element => {
-        console.log(element);
+        // console.log(element);
         const div = document.createElement('div');
         div.innerHTML = `
              <div class="bg-white p-10 space-y-4 text-center shadow-lg rounded-lg">
             <h2 class="text-2xl font-bold">${element.word ? element.word : "শব্দ পাওয়া যায়নি"}</h2>
             <p class="font-medium">Meaning / Pronunciation</p>
-            <p class="bangla-font text-2xl font-semibold">"${element.meaning?element.meaning:"অর্থ পাওয়া যায়নি"} / ${element.pronunciation?element.pronunciation:"উচ্চারণ পাওয়া যায়নি"}"</p>
+            <p class="bangla-font text-2xl font-semibold">"${element.meaning ? element.meaning : "অর্থ পাওয়া যায়নি"} / ${element.pronunciation ? element.pronunciation : "উচ্চারণ পাওয়া যায়নি"}"</p>
             <div class="flex justify-between">
-                <button class="btn bg-[#1A91FF10] hover:bg-[#1A91FF80]"><i class="fa-sharp fa-solid fa-circle-info"></i></button>
+                <button onclick="WordDeatails(${element.id})" class="btn bg-[#1A91FF10] hover:bg-[#1A91FF80] "><i class="fa-sharp fa-solid fa-circle-info"></i></button>
                 <button class="btn bg-[#1A91FF10] hover:bg-[#1A91FF80]"><i class="fa-sharp fa-solid fa-volume-high"></i></button>
             </div>
         </div>

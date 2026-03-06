@@ -71,7 +71,7 @@
     </header>
 
     <!-- banner section  -->
-     <section class=" w-11/12 mx-auto items-center md:flex flex-row-reverse border-2">
+     <section class=" w-11/12 mx-auto items-center md:flex flex-row-reverse ">
         <div class="flex-1  ">
             <img src="assets/hero-student.png" alt="">
         </div>
@@ -88,7 +88,7 @@
         </div>
      </section>
 
-     <section class="w-11/12 mx-auto my-10 text-center border-2 space-y-10 p-4">
+     <section class="w-11/12 mx-auto my-10 text-center  space-y-10 p-4">
         <h2 class="title font-bold text-4xl"><span class="text-sky-500 ">Let's</span> Learn Vocabularies</h2>
         <div id="all-levels" class="flex justify-center gap-4 flex-wrap">
 
@@ -98,10 +98,29 @@
      <section id="wordContainer" class="w-11/12 mx-auto my-10 grid grid-cols-3 gap-4 p-4 bg-gray-200 text-center border-2">
         <div class="text-center col-span-3 space-y-4 bangla-font">
             <img class="mx-auto" src="./assets/alert-error.png" alt="">
-            <p>এই Lesson এ এখনো কোন Vocabulary যুক্ত করা হয়নি।</p>
-            <p class="text-xl font-bold">নেক্সট Lesson এ যান</p>
+            <p>আপনি এখনো কোন Lesson Select করেন নি</p>
+            <p class="text-3xl font-bold">একটি Lesson Select করুন।</p>
         </div>
      </section>
+
+
+     <!-- info modal  -->
+
+    <!-- Open the modal using ID.showModal() method -->
+    <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
+    <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+        <div class="modal-box space-y-4">
+           <div id="wordDetailsContainer" class=" space-y-4">
+               
+           </div>
+            <div class="modal-action">
+                <form method="dialog">
+                    <!-- if there is a button in form, it will close the modal -->
+                    <button class="btn">Close</button>
+                </form>
+            </div>
+        </div>
+    </dialog>
 
 
 
