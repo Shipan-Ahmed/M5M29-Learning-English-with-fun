@@ -1,13 +1,28 @@
 
 // work flow 4 ============================================================
+
+const manageSpinner = (isLoading) => {
+    const spinnerSection = document.getElementById('spinner');
+    if (isLoading) {
+        spinnerSection.classList.remove('hidden');
+        document.getElementById('wordContainer').classList.add('hidden');
+    } else {
+        spinnerSection.classList.add("hidden");
+        document.getElementById("wordContainer").classList.remove("hidden");
+    }
+}
+
+const createElement = (synonyms) => {
+    const arr = synonyms.map(el => `<span class="btn" >${el}</span>`)
+    return arr.join(' ');
+}
+
 const WordDeatails = async (id) => {
     const url = `https://openapi.programming-hero.com/api/word/${id}`;
     const res = await fetch(url);
     const data = await res.json();
     displayWordDetails(data.data);
 }
-
-
 // id: 5;
 // level: 1;
 // meaning: "আগ্রহী";
@@ -36,12 +51,12 @@ const displayWordDetails = (data) => {
         </div>
         <div class="space-y-1">
             <p class="  font-bold">synonym</p>
-            <p class=""> <span class="btn primary">${data.synonyms[0] ? data.synonyms[0] : "synonym not found"}</span> <span class="btn primary">${data.synonyms[1] ? data.synonyms[1] : "synonym not found"}</span> <span
-                    class="btn primary">${data.synonyms[2] ? data.synonyms[2] : "synonym not found"}</span></p>
+            <p>${createElement(data.synonyms)} </p>
         </div>
     
     `;
     my_modal_5.showModal();
+    //  <p>${data.synonyms && data.synonyms.length > 0 ? data.synonyms.map(s => `<span class="btn ">${s}</span>`).join(' ') : "synonym not found"}</p>
 }
 
 
@@ -76,6 +91,8 @@ const words = (data) => {
             <p class="text-3xl font-bold">নেক্সট Lesson এ যান</p>
         `;
         cardContainer.appendChild(div);
+        manageSpinner(false);
+        return;
     }
     data.forEach(element => {
         // console.log(element);
@@ -93,10 +110,12 @@ const words = (data) => {
         `;
         cardContainer.appendChild(div);
     });
+    manageSpinner(false);
 }
 
 
-const loadWords =async (id) => {
+const loadWords = async (id) => {
+    manageSpinner(true);
     const url = `https://openapi.programming-hero.com/api/level/${id}`;
     const res = await fetch(url);
     const data = await res.json();
