@@ -5,3 +5,8 @@
 .bangla-font {
     font-family: "Hind Siliguri", sans-serif;
 }
+
+.Active {
+    background-color: #422AD5;
+    color: white;
+}

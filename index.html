@@ -71,22 +71,40 @@
     </header>
 
     <!-- banner section  -->
-     <section class=" w-11/12 mx-auto items-center  md:flex flex-row-reverse border-2">
-        <div class="border-2 flex-1  ">
+     <section class=" w-11/12 mx-auto items-center md:flex flex-row-reverse border-2">
+        <div class="flex-1  ">
             <img src="assets/hero-student.png" alt="">
         </div>
-        <div class="border-2 space-y-4 flex-1  text-center md:text-start p-2">
-            <h2 class="title font-bold text-4xl"><span class="text-blue-500 font-bold">English</span> is Easy</h2>
+        <div class=" space-y-4 flex-1  text-center md:text-start p-2">
+            <h2 class="title font-bold text-4xl"><span class="text-sky-500 ">English</span> is Easy!!</h2>
             <p class="text-2xl bangla-font">আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন অথবা আপনার দক্ষতা বাড়াতে চান, আমাদের Interactive Lessons
             আপনাকে নিয়ে যাবে অন্য একটি Level এ</p>
 
             <form action="">
                 <input type="text" placeholder="Enter Your Name"> <br><br>
-                <input type="text" placeholder="Enter Your Password"><br><br>
+                <input type="password" placeholder="Enter Your Password"><br><br>
                 <button class="btn  btn-primary">Get Started</button>
             </form>
         </div>
      </section>
 
+     <section class="w-11/12 mx-auto my-10 text-center border-2 space-y-10 p-4">
+        <h2 class="title font-bold text-4xl"><span class="text-sky-500 ">Let's</span> Learn Vocabularies</h2>
+        <div id="all-levels" class="flex justify-center gap-4 flex-wrap">
+
+        </div>
+     </section>
+
+     <section id="wordContainer" class="w-11/12 mx-auto my-10 grid grid-cols-3 gap-4 p-4 bg-gray-200 text-center border-2">
+        <div class="text-center col-span-3 space-y-4 bangla-font">
+            <img class="mx-auto" src="./assets/alert-error.png" alt="">
+            <p>এই Lesson এ এখনো কোন Vocabulary যুক্ত করা হয়নি।</p>
+            <p class="text-xl font-bold">নেক্সট Lesson এ যান</p>
+        </div>
+     </section>
+
+
+
+        <script src="script/script.js"></script>
 </body>
 </html>
