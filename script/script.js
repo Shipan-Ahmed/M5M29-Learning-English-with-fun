@@ -1,4 +1,14 @@
 
+
+//  for sound of words
+function pronounceWord(word) {
+  const utterance = new SpeechSynthesisUtterance(word);
+  utterance.lang = "en-EN"; // English
+  window.speechSynthesis.speak(utterance);
+}
+
+
+
 // work flow 4 ============================================================
 
 const manageSpinner = (isLoading) => {
@@ -104,7 +114,7 @@ const words = (data) => {
             <p class="bangla-font text-2xl font-semibold">"${element.meaning ? element.meaning : "অর্থ পাওয়া যায়নি"} / ${element.pronunciation ? element.pronunciation : "উচ্চারণ পাওয়া যায়নি"}"</p>
             <div class="flex justify-between">
                 <button onclick="WordDeatails(${element.id})" class="btn bg-[#1A91FF10] hover:bg-[#1A91FF80] "><i class="fa-sharp fa-solid fa-circle-info"></i></button>
-                <button class="btn bg-[#1A91FF10] hover:bg-[#1A91FF80]"><i class="fa-sharp fa-solid fa-volume-high"></i></button>
+                <button onclick=pronounceWord('${element.word}') class="btn bg-[#1A91FF10] hover:bg-[#1A91FF80]"><i class="fa-sharp fa-solid fa-volume-high"></i></button>
             </div>
         </div>
         `;
@@ -161,3 +171,23 @@ const displayLesson = lesson => {
 };
 
 Loadlesson();
+
+document.getElementById('searchBtn').addEventListener('click', () => {
+    removeActive();
+    const inputValue = document.getElementById('input').value.trim().toLowerCase();
+    // console.log(inputValue);
+    // use of trim() means remove whitespace from both ends of a string
+
+    fetch("https://openapi.programming-hero.com/api/words/all")
+        .then(res => res.json())
+        .then(data => {
+            const allWords = data.data;
+            const foundWords = allWords.filter(word => word.word.toLowerCase().includes(inputValue));
+            if(foundWords.length === 0){
+                alert("No words found");
+                return;
+            }
+            words(foundWords);
+
+        });
+});
